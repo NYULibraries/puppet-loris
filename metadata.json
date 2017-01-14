@@ -1,0 +1,15 @@
+{
+  "name": "NYULibraries-loris",
+  "version": "0.1.0",
+  "author": "Flannon Jackson",
+  "summary": "This module manages the Loris image server.  Currently suports RedHAat/Centos 7",
+  "license": "Apache 2.0",
+  "source": "https://github.com/NYULibraries/puppet-loris",
+  "project_page": "https://github.com/NYULibraries/puppet-loris",
+  "issues_url": "https://github.com/NYULibraries/puppet-loris/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
+    {"name":"stankevich-python","version_requirement":">= 1.14.0"}
+  ]
+}
+
