@@ -9,9 +9,6 @@ class loris::install::redhat7(
 
 ) inherits loris::params {
 
-  notice('notice from loris::install::redhat7  ----------')
-  notice('this is a test to see if vagrant provisioning is still super slow  ----------')
-
   # Make the loris user
   user { $user :
     ensure => present,
@@ -46,20 +43,6 @@ class loris::install::redhat7(
   python::pip { 'pip':
     ensure     => latest,
     pkgname    => 'pip',
-    virtualenv => 'system',
-    owner      => 'root',
-    timeout    => 1800,
-  }
-  python::pip { 'Werkzeug':
-    ensure     => present,
-    pkgname    => 'Werkzeug',
-    virtualenv => 'system',
-    owner      => 'root',
-    timeout    => 1800,
-  }
-  python::pip { 'Pillow':
-    ensure     => present,
-    pkgname    => 'Pillow',
     virtualenv => 'system',
     owner      => 'root',
     timeout    => 1800,
@@ -107,14 +90,6 @@ class loris::install::redhat7(
     revision => 'v2.1.0-final',
   }
 
-  #exec { 'loris setup' :
-  #  path    => [ '/bin', '/usr/bin', '/usr/local/bin'],
-  #  cwd     => "${user_home}/setup/loris2",
-  #  command => 'python setup.py install',
-  #  creates => "${user_home}/loris2.wsgi",
-  #  require => [ Class['apache'], Vcsrepo["${user_home}/setup/loris2"] ],
-  #}
-
   exec { 'loris setup' :
     path    => [ "${user_home}/virtualenv/bin", '/bin',
                 '/usr/bin', '/usr/local/bin'],
@@ -132,6 +107,5 @@ class loris::install::redhat7(
     content => template('loris/loris2.wsgi.erb'),
     require => Exec['loris setup'],
   }
-
 
 }
