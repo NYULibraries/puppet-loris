@@ -107,5 +107,21 @@ class loris::install::redhat7(
     content => template('loris/loris2.wsgi.erb'),
     require => Exec['loris setup'],
   }
+  file { '/usr/local/bin/kdu_expand':
+    ensure => file,
+    source => "file:///${user_home}/setup/loris2/bin/Linux/x86_64/kdu_expand",
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+    require => Exec['loris setup'],
+  }
+  file { '/usr/local/lib/libkdu_v74R.so':
+    ensure => file,
+    source => "file:///${user_home}/setup/loris2/lib/Linux/x86_64/libkdu_v74R.so",
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+    require => Exec['loris setup'],
+  }
 
 }
