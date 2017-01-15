@@ -107,35 +107,31 @@ class loris::install::redhat7(
     revision => 'v2.1.0-final',
   }
 
-  exec { 'loris setup' :
-    path    => [ '/bin', '/usr/bin', '/usr/local/bin'],
-    cwd     => "${user_home}/setup/loris2",
-    command => "python setup.py install",
-    creates => "${user_home}/setup/.loris-installed",
-    require => [ Class['apache'], Vcsrepo["${user_home}/setup/loris2"] ],
-    notify  => File["${user_home}/setup/.loris-installed"],
-  }
-  file { "${user_home}/setup/.loris-installed" :
-    ensure => present,
-    owner  => $user,
-    group  => $user,
-    mode   => '0755',
-  }
-
   #exec { 'loris setup' :
-  #  path  => [ "${user_home}//virtualenv/bin", '/bin',
-  #              '/usr/bin', '/usr/local/bin'],
-  #  cwd     => "${user_home}/setup",
-  #  command => "${user_home}/virtualenv/bin/python setup.py install",
-  #  creates => "${user_home}/setup/.loris-installed",
-  #  notify  => File["${user_home}/setup/.loris-installed"],
+  #  path    => [ '/bin', '/usr/bin', '/usr/local/bin'],
+  #  cwd     => "${user_home}/setup/loris2",
+  #  command => 'python setup.py install',
+  #  creates => "${user_home}/loris2.wsgi",
+  #  require => [ Class['apache'], Vcsrepo["${user_home}/setup/loris2"] ],
   #}
-  #file { "${user_home}/setup/.loris-installed" :
-  #  ensure => present,
-  #  owner  => $user,
-  #  group  => $user,
-  #  mode   => '0755',
-  #}
+
+  exec { 'loris setup' :
+    path    => [ "${user_home}/virtualenv/bin", '/bin',
+                '/usr/bin', '/usr/local/bin'],
+    cwd     => "${user_home}/setup/loris2",
+    command => "${user_home}/virtualenv/bin/python setup.py install",
+    creates => "${user_home}/loris2.wsgi",
+    require => [ Class['apache'], Vcsrepo["${user_home}/setup/loris2"] ],
+    notify  => File["${user_home}/loris2.wsgi"],
+  }
+  file { "${user_home}/loris2.wsgi" :
+    ensure  => present,
+    owner   => $user,
+    group   => $user,
+    mode    => '0755',
+    content => template('loris/loris2.wsgi.erb'),
+    require => Exec['loris setup'],
+  }
 
 
 }
