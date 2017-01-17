@@ -3,12 +3,12 @@
 #### Table of Contents
 
 1. [Overview](#overview)
-2. [Compatability](#compatability)
-3. [Parameter](#parameters)
+2. [Compatability](#compatibility)
+3. [Parameters](#parameters)
 4. [Usage](#usage)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
-5. [To Do](#to do)
+5. [Limitations](#limitations)
+6. [Development](#development)
+5. [To-Do](#to-do)
 5. [Contributors](#contributors)
 
 #### Overview
