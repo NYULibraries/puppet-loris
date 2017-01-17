@@ -36,7 +36,7 @@ class loris::cache(
     # once the server is running in production.
     cron { 'loris-cache_clean.sh':
       ensure  => present,
-      command => "${user_home}/setup/loris2/bin/",
+      command => "${user_home}/setup/loris2/bin/loris-cache_clean.sh",
       user    => $user,
       hour    => '0',
       minute  => '5',
