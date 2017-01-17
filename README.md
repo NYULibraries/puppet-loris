@@ -1,4 +1,4 @@
-# loris
+# puppet-loris
 
 #### Table of Contents
 
@@ -51,7 +51,7 @@ The loris module classes provide the following funcitonality
    Enables cache maintenance by enabling loris-cache_clean.sh from a cron job owned by the loris user. 
 
  * loris::demo
-   Installs a demo jp2 image, which can be seen at http://localhost:9080/loris/001.jp2/full/440,/0/default.png
+   Installs a demo jp2 image, which can be seen at http://localhost/loris/001.jp2/full/440,/0/default.png
   
 
 #### Limitations
