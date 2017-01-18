@@ -39,4 +39,21 @@ class loris::apache::vhost(
       },
     ],
   }
+  # This is a bit of a hack, but I'm confused as to what
+  # puppetlabs-apache appache::mod::epire is doing and how to 
+  # override it's parameters
+  file_line { '25-loris-default.conf ExpiresDefault':
+    ensure  => present,
+    path    => '/etc/httpd/conf.d/25-loris-default.conf',
+    after   => '^\ \ AllowEncodedSlashes\ on',
+    line    => '  ExpiresActive On',
+    require => Apache::Vhost['loris-default'],
+  }
+  file_line { '25-loris-default.conf ExpiresActive':
+    ensure  => present,
+    path    => '/etc/httpd/conf.d/25-loris-default.conf',
+    after   => '^\ \ ExpiresActive\ On',
+    line    => '  ExpiresDefault "access plus 5184000 seconds"',
+    require => Apache::Vhost['loris-default'],
+  }
 }
