@@ -1,6 +1,6 @@
 {
   "name": "NYULibraries-loris",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "Flannon Jackson",
   "summary": "This module manages the Loris image server.  Currently suports RedHAat/Centos 7",
   "license": "Apache 2.0",
