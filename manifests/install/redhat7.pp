@@ -3,6 +3,7 @@
 class loris::install::redhat7(
   #$image_dir = heira('loris::image_dir', $loris::params::image_dir), 
   #$user      = heira('loris::user', $loris::params::user), 
+  $default_vhost = $loris::params::default_vhost,
   $image_dir = $loris::params::image_dir,
   $user      = $loris::params::user,
   $user_home = $loris::params::user_home,

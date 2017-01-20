@@ -16,7 +16,8 @@
 class loris::apache(
   #$image_dir = heira('loris::image_dir', $loris::params::image_dir), 
   #$user      = heira('loris::user', $loris::params::user), 
-  $image_dir    = $loris::params::image_dir,
+  $default_vhost = $loris::params::default_vhost,
+  $image_dir     = $loris::params::image_dir,
   $loris_revision = $loris::params::loris_revision,
   $server_admin = $loris::params::server_admin,
   $server_name  = $loris::params::server_name,
@@ -25,6 +26,16 @@ class loris::apache(
 ) inherits loris::params {
 
   # install apache
+
+  # Drop mod_expires for the default_mods array
+  #$default_mods = [ 'actions', 'authn_core', 'cache', 'ext_filter',
+  #                  'mime', 'mime_magic', 'rewrite', 'speling',
+  #                  'suexec', 'version', 'vhost_alias', 'auth_digest',
+  #                  'authn_anon', 'authn_dbm', 'authz_dbm', 
+  #                  'authz_owner', 'include', 'logio', 'substitute',
+  #                  'usertrack',
+  #]
+
   class { 'apache' :
     package_ensure         => present,
     service_enable         => true,
@@ -66,6 +77,11 @@ class loris::apache(
   class { 'apache::mod::wsgi' :
     wsgi_python_home => "${user_home}/virtualenv",
   }
+  #class { 'apache::mod::expires' :
+  #  #expires_default => ['access', 'plus', '5184000', 'seconds',],
+  #  #expires_default => 'access plus 5184000 seconds',
+  #}
+  #include apache::mod::expires
 
   # I still need to figure out how to define 
   # apache::mod:: expires parameters
