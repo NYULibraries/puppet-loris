@@ -48,30 +48,44 @@ class loris::install::redhat7(
     owner      => 'root',
     timeout    => 1800,
   }
-  python::virtualenv { 'loris venv' :
-    ensure     => present,
-    version    => 'system',
-    systempkgs => true,
-    venv_dir   => "${user_home}/virtualenv",
-    owner      => $user,
-    group      => $user,
-    cwd        => '/tmp/vtmp',
-    timeout    => 0,
-  }
-  python::pip { 'Werkzeug for loris venv':
+  python::pip { 'Werkzeug':
     ensure     => present,
     pkgname    => 'Werkzeug',
-    virtualenv => "${user_home}/virtualenv",
-    owner      => 'loris',
+    virtualenv => 'system',
+    owner      => 'root',
     timeout    => 1800,
   }
-  python::pip { 'Pillow for loris venv':
+  python::pip { 'Pillow':
     ensure     => present,
     pkgname    => 'Pillow',
-    virtualenv => "${user_home}/virtualenv",
+    virtualenv => 'system',
     owner      => 'loris',
     timeout    => 1800,
   }
+  #python::virtualenv { 'loris venv' :
+  #  ensure     => present,
+  #  version    => 'system',
+  #  systempkgs => true,
+  #  venv_dir   => "${user_home}/virtualenv",
+  #  owner      => $user,
+  #  group      => $user,
+  #  cwd        => '/tmp/vtmp',
+  #  timeout    => 0,
+  #}
+  #python::pip { 'Werkzeug for loris venv':
+  #  ensure     => present,
+  #  pkgname    => 'Werkzeug',
+  #  virtualenv => "${user_home}/virtualenv",
+  #  owner      => 'loris',
+  #  timeout    => 1800,
+  #}
+  #python::pip { 'Pillow for loris venv':
+  #  ensure     => present,
+  #  pkgname    => 'Pillow',
+  #  virtualenv => "${user_home}/virtualenv",
+  #  owner      => 'loris',
+  #  timeout    => 1800,
+  #}
   file { "${user_home}/setup":
     ensure => directory,
     owner  => $user,
@@ -92,10 +106,12 @@ class loris::install::redhat7(
   }
 
   exec { 'loris setup' :
-    path    => [ "${user_home}/virtualenv/bin", '/bin',
-                '/usr/bin', '/usr/local/bin'],
+    #path    => [ "${user_home}/virtualenv/bin", '/bin',
+    #            '/usr/bin', '/usr/local/bin'],
+    path    => [ '/bin', '/usr/bin', '/usr/local/bin'],
     cwd     => "${user_home}/setup/loris2",
-    command => "${user_home}/virtualenv/bin/python setup.py install",
+    #command => "${user_home}/virtualenv/bin/python setup.py install",
+    command => "python setup.py install",
     creates => "${user_home}/loris2.wsgi",
     require => [ Class['apache'], Vcsrepo["${user_home}/setup/loris2"] ],
     notify  => File["${user_home}/loris2.wsgi"],
