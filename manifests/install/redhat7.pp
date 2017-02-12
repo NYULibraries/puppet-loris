@@ -59,7 +59,7 @@ class loris::install::redhat7(
     ensure     => present,
     pkgname    => 'Pillow',
     virtualenv => 'system',
-    owner      => 'loris',
+    owner      => 'root',
     timeout    => 1800,
   }
   #python::virtualenv { 'loris venv' :
