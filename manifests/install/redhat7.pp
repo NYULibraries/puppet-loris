@@ -50,14 +50,14 @@ class loris::install::redhat7(
   python::pip { 'Werkzeug':
     ensure     => present,
     pkgname    => 'Werkzeug',
-    virtualenv => "${user_home}/virtualenv",
+    virtualenv => 'system',
     owner      => 'root',
     timeout    => 1800,
   }
   python::pip { 'Pillow':
     ensure     => present,
     pkgname    => 'Pillow',
-    virtualenv => "${user_home}/virtualenv",
+    virtualenv => 'system',
     owner      => 'root',
     timeout    => 1800,
   }
