@@ -47,30 +47,44 @@ class loris::install::redhat7(
     owner      => 'root',
     timeout    => 1800,
   }
-  python::virtualenv { 'loris venv' :
-    ensure     => present,
-    version    => 'system',
-    systempkgs => true,
-    venv_dir   => "${user_home}/virtualenv",
-    owner      => $user,
-    group      => $user,
-    cwd        => '/tmp/vtmp',
-    timeout    => 0,
-  }
-  python::pip { 'Werkzeug for loris venv':
+  python::pip { 'Werkzeug':
     ensure     => present,
     pkgname    => 'Werkzeug',
     virtualenv => "${user_home}/virtualenv",
-    owner      => 'loris',
+    owner      => 'root',
     timeout    => 1800,
   }
-  python::pip { 'Pillow for loris venv':
+  python::pip { 'Pillow':
     ensure     => present,
     pkgname    => 'Pillow',
     virtualenv => "${user_home}/virtualenv",
-    owner      => 'loris',
+    owner      => 'root',
     timeout    => 1800,
   }
+  #python::virtualenv { 'loris venv' :
+  #  ensure     => present,
+  #  version    => 'system',
+  #  systempkgs => true,
+  #  venv_dir   => "${user_home}/virtualenv",
+  #  owner      => $user,
+  #  group      => $user,
+  #  cwd        => '/tmp/vtmp',
+  #  timeout    => 0,
+  #}
+  #python::pip { 'Werkzeug for loris venv':
+  #  ensure     => present,
+  #  pkgname    => 'Werkzeug',
+  #  virtualenv => "${user_home}/virtualenv",
+  #  owner      => 'loris',
+  #  timeout    => 1800,
+  #}
+  #python::pip { 'Pillow for loris venv':
+  #  ensure     => present,
+  #  pkgname    => 'Pillow',
+  #  virtualenv => "${user_home}/virtualenv",
+  #  owner      => 'loris',
+  #  timeout    => 1800,
+  #}
   file { "${user_home}/setup":
     ensure => directory,
     owner  => $user,
