@@ -62,10 +62,10 @@ class loris::apache(
   include apache::mod::php
   include apache::mod::rewrite
   include apache::mod::headers
-  #include apache::mod::wsgi
-  class { 'apache::mod::wsgi' :
-    wsgi_python_home => "${user_home}/virtualenv",
-  }
+  include apache::mod::wsgi
+  #class { 'apache::mod::wsgi' :
+  #  wsgi_python_home => "${user_home}/virtualenv",
+  #}
 
   # I still need to figure out how to define 
   # apache::mod:: expires parameters
