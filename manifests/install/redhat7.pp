@@ -34,8 +34,8 @@ class loris::install::redhat7(
   }
   class { 'python':
     version    => 'system',
-    #pip        => 'present',
-    pip        => 'latest',
+    pip        => 'present',
+    #pip        => 'latest',
     dev        => 'present',
     virtualenv => 'present',
     gunicorn   => 'absent',
@@ -77,7 +77,7 @@ class loris::install::redhat7(
     timeout    => 1800,
   }
   ##
-  python::virtualenv { 'loris venv' :
+  python::virtualenv { "${user_home}/virtualenv" :
     ensure     => present,
     version    => 'system',
     systempkgs => true,
@@ -87,14 +87,14 @@ class loris::install::redhat7(
     cwd        => '/tmp/vtmp',
     timeout    => 0,
   }
-  python::pip { 'Werkzeug for loris venv':
+  python::pip { "${user_home}/virtualenv Werkzeug":
     ensure     => present,
     pkgname    => 'Werkzeug',
     virtualenv => "${user_home}/virtualenv",
     owner      => 'loris',
     timeout    => 1800,
   }
-  python::pip { 'Pillow for loris venv':
+  python::pip { "${user_home}/virtualenv Pillow":
     ensure     => present,
     pkgname    => 'Pillow',
     virtualenv => "${user_home}/virtualenv",
