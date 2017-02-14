@@ -34,15 +34,30 @@ class loris::install::redhat7(
   }
   class { 'python':
     version    => 'system',
-    pip        => 'present',
+    #pip        => 'present',
+    pip        => 'latest',
     dev        => 'present',
     virtualenv => 'present',
     gunicorn   => 'absent',
     use_epel   => true,
   }
-  python::pip { 'pip':
+  #python::pip { 'pip':
+  #  ensure     => latest,
+  #  pkgname    => 'pip',
+  #  virtualenv => 'system',
+  #  owner      => 'root',
+  #  timeout    => 1800,
+  #}
+  python::pip { 'setuptools':
     ensure     => latest,
-    pkgname    => 'pip',
+    pkgname    => 'setuptools',
+    virtualenv => 'system',
+    owner      => 'root',
+    timeout    => 1800,
+  }
+  python::pip { 'virtualenv':
+    ensure     => latest,
+    pkgname    => 'virtualenv',
     virtualenv => 'system',
     owner      => 'root',
     timeout    => 1800,
@@ -61,30 +76,31 @@ class loris::install::redhat7(
     owner      => 'root',
     timeout    => 1800,
   }
-  #python::virtualenv { 'loris venv' :
-  #  ensure     => present,
-  #  version    => 'system',
-  #  systempkgs => true,
-  #  venv_dir   => "${user_home}/virtualenv",
-  #  owner      => $user,
-  #  group      => $user,
-  #  cwd        => '/tmp/vtmp',
-  #  timeout    => 0,
-  #}
-  #python::pip { 'Werkzeug for loris venv':
-  #  ensure     => present,
-  #  pkgname    => 'Werkzeug',
-  #  virtualenv => "${user_home}/virtualenv",
-  #  owner      => 'loris',
-  #  timeout    => 1800,
-  #}
-  #python::pip { 'Pillow for loris venv':
-  #  ensure     => present,
-  #  pkgname    => 'Pillow',
-  #  virtualenv => "${user_home}/virtualenv",
-  #  owner      => 'loris',
-  #  timeout    => 1800,
-  #}
+  ##
+  python::virtualenv { 'loris venv' :
+    ensure     => present,
+    version    => 'system',
+    systempkgs => true,
+    venv_dir   => "${user_home}/virtualenv",
+    owner      => $user,
+    group      => $user,
+    cwd        => '/tmp/vtmp',
+    timeout    => 0,
+  }
+  python::pip { 'Werkzeug for loris venv':
+    ensure     => present,
+    pkgname    => 'Werkzeug',
+    virtualenv => "${user_home}/virtualenv",
+    owner      => 'loris',
+    timeout    => 1800,
+  }
+  python::pip { 'Pillow for loris venv':
+    ensure     => present,
+    pkgname    => 'Pillow',
+    virtualenv => "${user_home}/virtualenv",
+    owner      => 'loris',
+    timeout    => 1800,
+  }
   file { "${user_home}/setup":
     ensure => directory,
     owner  => $user,
