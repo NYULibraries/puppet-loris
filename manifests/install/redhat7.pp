@@ -41,13 +41,13 @@ class loris::install::redhat7(
     gunicorn   => 'absent',
     use_epel   => true,
   }
-  #python::pip { 'pip':
-  #  ensure     => latest,
-  #  pkgname    => 'pip',
-  #  virtualenv => 'system',
-  #  owner      => 'root',
-  #  timeout    => 1800,
-  #}
+  python::pip { 'pip':
+    ensure     => latest,
+    pkgname    => 'pip',
+    virtualenv => 'system',
+    owner      => 'root',
+    timeout    => 1800,
+  }
   python::pip { 'setuptools':
     ensure     => latest,
     pkgname    => 'setuptools',
