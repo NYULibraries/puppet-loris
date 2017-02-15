@@ -135,7 +135,10 @@ class loris::install::redhat7(
     creates => "${user_home}/loris2.wsgi",
     require => [ Class['apache'], Vcsrepo["${user_home}/setup/loris2"],
                  Python::Virtualenv[ "${user_home}/virtualenv"] ], 
-    notify  => File["${user_home}/loris2.wsgi"],
+    notify    => File["${user_home}/loris2.wsgi"],
+    tries     => '5',
+    try_sleep => '1',
+    user      => 'root',
   }
   file { "${user_home}/loris2.wsgi" :
     ensure  => present,
