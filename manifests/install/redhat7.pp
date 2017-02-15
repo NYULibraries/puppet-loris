@@ -88,13 +88,6 @@ class loris::install::redhat7(
     timeout    => 0,
     require    => Package['python-virtualenv.noarch'],
   }
-  file { 'set ownership on loris virtualenv' :
-    ensure  => directory,
-    path    => "${user_home}/virtualenv",
-    owner   => $user,
-    group   => $user,
-    recurse => true,
-  }
   python::pip { "${user_home}/virtualenv Werkzeug":
     ensure     => present,
     pkgname    => 'Werkzeug',
