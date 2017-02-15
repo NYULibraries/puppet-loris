@@ -159,7 +159,7 @@ class loris::install::redhat7(
     owner  => 'root',
     group  => 'root',
     mode   => '0755',
-    require => Exec['exec_loris-setup'],
+    require => Exec['exec_loris_setup'],
   }
 
 }
