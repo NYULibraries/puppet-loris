@@ -126,8 +126,8 @@ class loris::install::redhat7(
   }
 
   exec { 'loris setup' :
-    #path    => [ "${user_home}/virtualenv/bin", '/bin',
-    #            '/usr/bin', '/usr/local/bin'],
+    path    => [ "${user_home}/virtualenv/bin", '/bin',
+                '/usr/bin', '/usr/local/bin'],
     path    => [ '/bin', '/usr/bin', '/usr/local/bin'],
     cwd     => "${user_home}/setup/loris2",
     #command => "${user_home}/virtualenv/bin/python setup.py install",
