@@ -62,20 +62,20 @@ class loris::install::redhat7(
     owner      => 'root',
     timeout    => 1800,
   }
-  #python::pip { 'Werkzeug':
-  #  ensure     => present,
-  #  pkgname    => 'Werkzeug',
-  #  virtualenv => 'system',
-  #  owner      => 'root',
-  #  timeout    => 1800,
-  #}
-  #python::pip { 'Pillow':
-  #  ensure     => present,
-  #  pkgname    => 'Pillow',
-  #  virtualenv => 'system',
-  #  owner      => 'root',
-  #  timeout    => 1800,
-  #}
+  python::pip { 'Werkzeug':
+    ensure     => present,
+    pkgname    => 'Werkzeug',
+    virtualenv => 'system',
+    owner      => 'root',
+    timeout    => 1800,
+  }
+  python::pip { 'Pillow':
+    ensure     => present,
+    pkgname    => 'Pillow',
+    virtualenv => 'system',
+    owner      => 'root',
+    timeout    => 1800,
+  }
   python::virtualenv { "${user_home}/virtualenv" :
     ensure     => present,
     version    => 'system',
@@ -88,20 +88,20 @@ class loris::install::redhat7(
     timeout    => 0,
     require    => Package['python-virtualenv.noarch'],
   }
-  python::pip { "${user_home}/virtualenv Werkzeug":
-    ensure     => present,
-    pkgname    => 'Werkzeug',
-    virtualenv => "${user_home}/virtualenv",
-    owner      => 'loris',
-    timeout    => 1800,
-  }
-  python::pip { "${user_home}/virtualenv Pillow":
-    ensure     => present,
-    pkgname    => 'Pillow',
-    virtualenv => "${user_home}/virtualenv",
-    owner      => 'loris',
-    timeout    => 1800,
-  }
+  #python::pip { "${user_home}/virtualenv Werkzeug":
+  #  ensure     => present,
+  #  pkgname    => 'Werkzeug',
+  #  virtualenv => "${user_home}/virtualenv",
+  #  owner      => 'loris',
+  #  timeout    => 1800,
+  #}
+  #python::pip { "${user_home}/virtualenv Pillow":
+  #  ensure     => present,
+  #  pkgname    => 'Pillow',
+  #  virtualenv => "${user_home}/virtualenv",
+  #  owner      => 'loris',
+  #  timeout    => 1800,
+  #}
   file { "${user_home}/setup":
     ensure => directory,
     owner  => $user,
