@@ -20,6 +20,7 @@ class loris::dependencies::redhat7 {
     'make',
     'patch',
     'pkgconfig',
+    'python-virtualenv.noarch',
     'redhat-rpm-config',
     'rpm-build',
     'byacc',

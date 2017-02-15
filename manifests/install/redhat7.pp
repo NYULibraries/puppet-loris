@@ -48,30 +48,46 @@ class loris::install::redhat7(
     owner      => 'root',
     timeout    => 1800,
   }
-  python::pip { 'Werkzeug':
-    ensure     => present,
-    pkgname    => 'Werkzeug',
+  python::pip { 'setuptools':
+    ensure     => latest,
+    pkname     => 'setuptools',
     virtualenv => 'system',
     owner      => 'root',
     timeout    => 1800,
   }
-  python::pip { 'Pillow':
-    ensure     => present,
-    pkgname    => 'Pillow',
+  python::pip { 'virtualenv':
+    ensure     => latest,
+    pkname     => 'virtualenv',
     virtualenv => 'system',
     owner      => 'root',
     timeout    => 1800,
   }
-  #python::virtualenv { 'loris venv' :
+  #python::pip { 'Werkzeug':
   #  ensure     => present,
-  #  version    => 'system',
-  #  systempkgs => true,
-  #  venv_dir   => "${user_home}/virtualenv",
-  #  owner      => $user,
-  #  group      => $user,
-  #  cwd        => '/tmp/vtmp',
-  #  timeout    => 0,
+  #  pkgname    => 'Werkzeug',
+  #  virtualenv => 'system',
+  #  owner      => 'root',
+  #  timeout    => 1800,
   #}
+  #python::pip { 'Pillow':
+  #  ensure     => present,
+  #  pkgname    => 'Pillow',
+  #  virtualenv => 'system',
+  #  owner      => 'root',
+  #  timeout    => 1800,
+  #}
+  python::virtualenv { "${user_home}/virtualenv" :
+    ensure     => present,
+    version    => 'system',
+    systempkgs => true,
+    distribute => false,
+    venv_dir   => "${user_home}/virtualenv",
+    owner      => $user,
+    group      => $user,
+    cwd        => '/tmp',
+    timeout    => 0,
+    require    => Package['python-virtualenv.noarch'],
+  }
   #python::pip { 'Werkzeug for loris venv':
   #  ensure     => present,
   #  pkgname    => 'Werkzeug',
