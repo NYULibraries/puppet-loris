@@ -95,7 +95,7 @@ class loris::install::redhat7(
     owner      => 'loris',
     timeout    => 1800,
   }
-  python::pip { "${user_home}/virtualenv Pillow':
+  python::pip { "${user_home}/virtualenv Pillow":
     ensure     => present,
     pkgname    => 'Pillow',
     virtualenv => "${user_home}/virtualenv",
