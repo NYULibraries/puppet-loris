@@ -50,14 +50,14 @@ class loris::install::redhat7(
   }
   python::pip { 'setuptools':
     ensure     => latest,
-    pkname     => 'setuptools',
+    pkgname     => 'setuptools',
     virtualenv => 'system',
     owner      => 'root',
     timeout    => 1800,
   }
   python::pip { 'virtualenv':
     ensure     => latest,
-    pkname     => 'virtualenv',
+    pkgname     => 'virtualenv',
     virtualenv => 'system',
     owner      => 'root',
     timeout    => 1800,
