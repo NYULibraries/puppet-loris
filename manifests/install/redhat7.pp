@@ -140,11 +140,11 @@ class loris::install::redhat7(
     path    => [ '/bin','/usr/bin', '/usr/local/bin', 
                 "${www_dir}/virtualenv/bin"],
     #path    => [ '/bin', '/usr/bin', '/usr/local/bin'],
-    cwd     => "${www_dir}/setup/loris2",
+    cwd     => "${www_dir}/src/loris2",
     command => "${www_dir}/virtualenv/bin/python setup.py install --source-images $source_images --image-cache $image_cache",
     #command => "python setup.py install",
     creates => "${www_dir}/loris2.wsgi",
-    require => [ Class['apache'], Vcsrepo["${www_dir}/setup/loris2"],
+    require => [ Class['apache'], Vcsrepo["${www_dir}/src/loris2"],
                  Python::Virtualenv[ "${www_dir}/virtualenv"] ], 
     notify    => File["${www_dir}/loris2.wsgi"],
     tries     => '5',
@@ -161,7 +161,7 @@ class loris::install::redhat7(
   }
   file { $kdu_expand:
     ensure => file,
-    source => "file:///${www_dir}/setup/loris2/bin/Linux/x86_64/kdu_expand",
+    source => "file:///${www_dir}/src/loris2/bin/Linux/x86_64/kdu_expand",
     owner  => 'root',
     group  => 'root',
     mode   => '0755',
@@ -169,7 +169,7 @@ class loris::install::redhat7(
   }
   file { "${libkdu}/libkdu_v74R.so":
     ensure => file,
-    source => "file:///${www_dir}/setup/loris2/lib/Linux/x86_64/libkdu_v74R.so",
+    source => "file:///${www_dir}/src/loris2/lib/Linux/x86_64/libkdu_v74R.so",
     owner  => 'root',
     group  => 'root',
     mode   => '0755',
