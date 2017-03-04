@@ -159,7 +159,7 @@ class loris::install::redhat7(
     content => template('loris/loris2.wsgi.erb'),
     require => Exec['exec_loris_setup'],
   }
-  file { $dku_expand:
+  file { $kdu_expand:
     ensure => file,
     source => "file:///${www_dir}/setup/loris2/bin/Linux/x86_64/kdu_expand",
     owner  => 'root',
