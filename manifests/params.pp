@@ -26,6 +26,7 @@ class loris::params {
   case $::osfamily {
     'RedHat' : {
       $config_dir     = '/etc/loris2'
+      $confdir     = '/etc/loris2'
       $default_vhost  = true
       $image_cache    = '/var/cache/loris2'
       $image_dir      = '/usr/local/share/images'
@@ -36,6 +37,7 @@ class loris::params {
       $log_level      = 'INFO'
       $loris_group    = 'loris'
       $loris_owner    = 'loris'
+      $loris_owner_home    = '/var/www/loris2'
       $loris_revision = 'v2.1.0-final'
       $server_name    = 'loris.local'
       $server_admin   = "root@${server_name}"

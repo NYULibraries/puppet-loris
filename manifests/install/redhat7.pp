@@ -11,7 +11,7 @@ class loris::install::redhat7(
   $log_dir          = hiera('loris::log_dir', $loris::params::log_dir),
   $log_level        = hiera('loris::log_level', $loris::params::log_level),
   $loris_group      = hiera('loris::loris_group', $loris::params::loris_group),
-  $loris_owner      = hiera('loris::loris_ownder', $loris::params::loris_owner),
+  $loris_owner      = hiera('loris::loris_owner', $loris::params::loris_owner),
   $loris_owner_home = hiera('loris::loris_owner_home', $loris::params::loris_owner_home),
   $loris_revision   = hiera('loris::loris_revision', $loris::params::loris_revision),
   $server_name      = hiera('loris::server_name', $loris::params::server_name),
