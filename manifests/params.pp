@@ -33,7 +33,7 @@ class loris::params {
       $kdu_expand     = '/usr/local/bin/kdu_expand'
       $libkdu         = '/usr/local/lib'
       $log_dir        = '/var/log/loris2'
-      $log_level      = 'INFO',
+      $log_level      = 'INFO'
       $loris_group    = 'loris'
       $loris_owner    = 'loris'
       $loris_revision = 'v2.1.0-final'
