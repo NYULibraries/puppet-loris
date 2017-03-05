@@ -127,7 +127,7 @@ class loris::install::redhat7(
                 "${www_dir}/virtualenv/bin"],
     #path    => [ '/bin', '/usr/bin', '/usr/local/bin'],
     cwd     => "${www_dir}/src/loris2",
-    command => "${www_dir}/virtualenv/bin/python setup.py install --source-images $source_images --image-cache $image_cache",
+    command => "${www_dir}/virtualenv/bin/python setup.py install --source-images $source_images --image-cache $image_cache --info-cache $info_cache",
     #command => "python setup.py install",
     creates => "${www_dir}/loris2.wsgi",
     require => [ Class['apache'], Vcsrepo["${www_dir}/src/loris2"],
