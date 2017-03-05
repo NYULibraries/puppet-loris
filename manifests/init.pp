@@ -37,7 +37,7 @@ class loris(
   $loris_revision   = hiera('loris::loris_revision', $loris::params::loris_revision), 
   $server_name      = hiera('loris::server_name', $loris::params::server_name),
   $server_admin     = hiera('loris::server_admin', $loris::params::server_admin),
-  $source_images    = hiera('loris::source_image', $loris::params::source_images),
+  $source_images    = hiera('loris::source_images', $loris::params::source_images),
   $tmp_dir          = hiera('loris::tmp_dir', $loris::params::tmp_dir),
   $www_dir          = hiera('loris::www_dir', $loris::params::www_dir),
 
