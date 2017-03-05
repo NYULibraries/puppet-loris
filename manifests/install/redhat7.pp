@@ -1,8 +1,6 @@
 # == Class: loris
 #
 class loris::install::redhat7(
-  #$image_dir = hiera('loris::image_dir', $loris::params::image_dir), 
-  #$user      = hiera('loris::user', $loris::params::user), 
   $confdir          = hiera('loris::confdir', $loris::params::confdir),
   $default_vhost    = hiera('loris::default_vhost', $loris::params::default_vhost),
   $image_cache      = hiera('loris::image_cache', $loris::params::image_cache),
@@ -11,6 +9,7 @@ class loris::install::redhat7(
   $kdu_expand       = hiera('loris::kdu_expand', $loris::params::kdu_expand),
   $libkdu           = hiera('loris::libkdu', $loris::params::libkdu),
   $log_dir          = hiera('loris::log_dir', $loris::params::log_dir),
+  $log_level        = hiera('loris::log_level', $loris::params::log_level),
   $loris_group      = hiera('loris::loris_group', $loris::params::loris_group),
   $loris_owner      = hiera('loris::loris_ownder', $loris::params::loris_owner),
   $loris_owner_home = hiera('loris::loris_owner_home', $loris::params::loris_owner_home),
@@ -77,20 +76,7 @@ class loris::install::redhat7(
     owner      => 'root',
     timeout    => 1800,
   }
-  #python::pip { 'Werkzeug':
-  #  ensure     => present,
-  #  pkgname    => 'Werkzeug',
-  #  virtualenv => 'system',
-  #  owner      => 'root',
-  #  timeout    => 1800,
-  #}
-  #python::pip { 'Pillow':
-  #  ensure     => present,
-  #  pkgname    => 'Pillow',
-  #  virtualenv => 'system',
-  #  owner      => 'root',
-  #  timeout    => 1800,
-  #}
+
   python::virtualenv { "${www_dir}/virtualenv" :
     ensure     => present,
     version    => 'system',
@@ -173,6 +159,15 @@ class loris::install::redhat7(
     owner  => 'root',
     group  => 'root',
     mode   => '0755',
+    require => Exec['exec_loris_setup'],
+  }
+
+  file { "${config_dir}/loris2.conf" :
+    ensure  => present,
+    owner   => $loris_owner,
+    group   => $loris_group,
+    mode    => '0755',
+    content => template('loris/loris2.conf.erb'),
     require => Exec['exec_loris_setup'],
   }
 
