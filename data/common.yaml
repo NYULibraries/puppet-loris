@@ -1,5 +1,5 @@
 ---
-loris::default_vhost: 'true'
+loris::default_vhost: true
 loris::image_dir: '/usr/local/share/images'
 loris::loris_revision: 'v2.1.0-final'
 loris::server_name: 'loris.local'
