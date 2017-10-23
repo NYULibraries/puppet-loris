@@ -68,8 +68,8 @@ class loris::apache(
     minspareservers        => '5',
     maxspareservers        => '20',
     serverlimit            => '400',
-    maxrequestworkers      => '400',
-    maxconnectionsperchild => '4000',
+    maxclients             => '400',
+    maxrequestsperchild    => '4000',
   }
   include apache::dev
   include apache::mod::deflate
