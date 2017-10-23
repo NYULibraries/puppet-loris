@@ -3,12 +3,12 @@
 class loris::apache::vhost(
   #$image_dir = heira('loris::image_dir', $loris::params::image_dir), 
   #$user      = heira('loris::user', $loris::params::user), 
-  $default_vhost = $loris::params::default_vhost,
-  $image_dir     = $loris::params::image_dir,
-  $user          = $loris::params::user,
-  $user_home     = $loris::params::user_home,
-  #$vhost_value   = $loris::params::vhost_value,
-) inherits loris::params {
+  String $default_vhost = lookup('loris::default_vhost', String, 'first'),
+  String $image_dir     = lookup('loris::image_dir', String, 'first'),
+  String $user          = lookup('loris::user', String, 'first'),
+  String $user_home     = lookup('loris::user_home', String, 'first'),
+  #$vhost_value   = lookup('loris::params::vhost_value', String, 'first'),
+){
   
   if $default_vhost == true {
     $vhost_value = '10'

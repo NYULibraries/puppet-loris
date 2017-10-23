@@ -16,11 +16,4 @@ class loris::install {
     }
     default : { notice("${::osfamily} is not supported at this time.") }
   }
-  #file { '/etc/httpd/conf.d/0-loris.conf':
-  #  ensure => present,
-  #  source => 'puppet:///modules/loris/0-loris.conf',
-  #  owner  => 'root',
-  #  group  => 'root',
-  #  mode   => '0755',
-  #}
 }

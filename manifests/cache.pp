@@ -22,9 +22,8 @@
 # Copyright 2017 Your name here, unless otherwise noted.
 #
 class loris::cache(
-  $user_home = $loris::params::user_home,
-  ) inherits loris::params{
-
+  String $user_home = lookup('$loris::user_home', String, 'first'),
+){
     file { '/var/log/loris2' :
       ensure => directory,
       owner  => $user,

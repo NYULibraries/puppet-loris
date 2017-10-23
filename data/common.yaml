@@ -1,0 +1,10 @@
+-$--
+archivesspace::ensure: 'present'
+loris::default_vhost: 'true'
+loris::image_dir: '/usr/local/share/images'
+loris::loris_revision: 'v2.1.0-final'
+loris::server_name: 'loris.local'
+loris::server_admin: "root@${server_name}"
+loris::user: 'loris'
+#loris::user_home: "/var/www/${user}2"
+loris::user_home: "/var/www/loris2"

@@ -22,22 +22,12 @@
 # Copyright 2017 Your name here, unless otherwise noted.
 #
 class loris(
-  $default_vhost = $loris::params::default_vhost,
-) inherits loris::params {
-
-  #if $default_vhost == true {
-  #  $vhost_value = '10'
-  #}
-  #elsif $default_vhost == false {
-  #  #else {
-  #  $vhost_value = '25'
-  #} 
-  include loris::dependencies
+  String $default_vhost = lookup('loris::default_vhost', String, 'first'),
+){
+  include loris::packages
   include loris::install
   include loris::apache
   include loris::apache::vhost
   include loris::cache
   include loris::demo
-
-
 }

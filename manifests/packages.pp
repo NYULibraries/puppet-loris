@@ -1,7 +1,6 @@
-# == Class: loris
+# == Class: loris::packages
 #
-class loris::dependencies {
-
+class loris::packages {
   # The double case is a bit uggly, but centos 6 i
   # requires a whole different approach.
   case $::osfamily {

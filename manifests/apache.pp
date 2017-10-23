@@ -16,17 +16,14 @@
 class loris::apache(
   #$image_dir = heira('loris::image_dir', $loris::params::image_dir), 
   #$user      = heira('loris::user', $loris::params::user), 
-  $default_vhost = $loris::params::default_vhost,
-  $image_dir     = $loris::params::image_dir,
-  $loris_revision = $loris::params::loris_revision,
-  $server_admin = $loris::params::server_admin,
-  $server_name  = $loris::params::server_name,
-  $user         = $loris::params::user,
-  $user_home    = $loris::params::user_home,
-) inherits loris::params {
-
-  # install apache
-
+  String $default_vhost  = lookup('loris::default_vhost', String, 'first'),
+  String $image_dir      = lookup('loris::image_dir', String, 'first'),
+  String $loris_revision = lookup('loris::loris_revision', String, 'first'),
+  String $server_admin   = lookup('loris::server_admin', String, 'first'),
+  String $server_name    = lookup('loris::server_name', String, 'first'),
+  String $user           = lookup('loris::user', String, 'first'),
+  String $user_home      = lookup('loris::user_home', String, 'first'),
+){
   # Drop mod_expires for the default_mods array
   #$default_mods = [ 'actions', 'authn_core', 'cache', 'ext_filter',
   #                  'mime', 'mime_magic', 'rewrite', 'speling',
@@ -88,9 +85,9 @@ class loris::apache(
   #include apache::mod::expires
 
   firewall { '100 allow http and https access':
-    dport  => [ 80, 8080, 9080 ],
+    dport  => [ 80, 443, 8080, 9080 ],
+    #dport  => [ 80, 443, 8080 ],
     proto  => tcp,
     action => accept,
   }
-
 }

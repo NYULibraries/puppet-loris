@@ -22,9 +22,8 @@
 # Copyright 2017 Your name here, unless otherwise noted.
 #
 class loris::demo(
-  $image_dir = $loris::params::image_dir,
-  ) inherits loris::params{
-
+  String $image_dir = lookup('loris::image_dir', String, 'first'),
+){
     file { "${image_dir}/001.jp2" :
       ensure  => file,
       owner   => $user,
@@ -33,5 +32,4 @@ class loris::demo(
       source  => 'puppet:///modules/loris/001.jp2',
       require => Class['loris::install'],
     }
-
 }

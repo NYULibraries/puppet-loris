@@ -1,6 +1,6 @@
-# == Class: loris
+# == Class: loris::packages::redhat7
 #
-class loris::dependencies::redhat7 {
+class loris::packages::redhat7 {
 
   notice('notice from loris::dependencies::redhat7  ----------')
   # The following package list is a bit overkill, but it's what
@@ -57,5 +57,4 @@ class loris::dependencies::redhat7 {
   ],
   {'ensure' => 'present'}
   )
-
 }
