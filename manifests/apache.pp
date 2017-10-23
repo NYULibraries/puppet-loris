@@ -36,7 +36,7 @@ class loris::apache(
     package_ensure         => present,
     service_enable         => true,
     default_mods           => true,
-    default_vhost          => false,
+    #default_vhost          => false,
     dev_packages           => 'httpd-devel',
     docroot                => '/var/www/html',
     httpd_dir              => '/etc/httpd',

@@ -3,22 +3,22 @@
 class loris::apache::vhost(
   #$image_dir = heira('loris::image_dir', $loris::params::image_dir), 
   #$user      = heira('loris::user', $loris::params::user), 
-  String $default_vhost_loris = lookup('loris::default_vhost_loris', Boolean, 'first'),
+  Boolean $default_vhost = lookup('loris::default_vhost_loris', Boolean, 'first'),
   String $image_dir     = lookup('loris::image_dir', String, 'first'),
   String $user          = lookup('loris::user', String, 'first'),
   String $user_home     = lookup('loris::user_home', String, 'first'),
   #$vhost_value   = lookup('loris::params::vhost_value', String, 'first'),
 ){
   
-  if $default_vhost_loris == true {
+  if $default_vhost == true {
     $vhost_value = '10'
   }
-  elsif $default_vhost_loris == false {
+  elsif $default_vhost == false {
     $vhost_value = '25'
   } 
   apache::vhost { 'loris-default':
     servername                  => $::fqdn,
-    default_vhost               => $default_vhost_loris,
+    default_vhost               => $default_vhost,
     docroot                     => '/var/www/html',
     port                        => 80,
     #port                       => 443,
