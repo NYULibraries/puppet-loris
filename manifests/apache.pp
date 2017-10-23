@@ -47,7 +47,8 @@ class loris::apache(
     log_level              => 'warn',
     logroot                => '/var/log/httpd',
     mod_dir                => '/etc/httpd/conf.d',
-    mpm_module             => 'prefork',
+    #mpm_module             => 'prefork',
+    mpm_module             => 'false',
     pidfile                => 'run/httpd.pid',
     sendfile               => 'On',
     serveradmin            => $server_admin,
@@ -62,6 +63,8 @@ class loris::apache(
     user                   => 'apache',
     apache_name            => 'httpd',
   }
+
+  class { apache::mod::event : }
 
   include apache::dev
   include apache::mod::deflate
