@@ -22,7 +22,7 @@
 # Copyright 2017 Your name here, unless otherwise noted.
 #
 class loris(
-  String $default_vhost = lookup('loris::default_vhost', Boolean, 'first'),
+  String $default_vhost = lookup('loris::default_vhost', String, 'first'),
 ){
   include loris::packages
   include loris::install

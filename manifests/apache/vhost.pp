@@ -3,17 +3,17 @@
 class loris::apache::vhost(
   #$image_dir = heira('loris::image_dir', $loris::params::image_dir), 
   #$user      = heira('loris::user', $loris::params::user), 
-  String $default_vhost = lookup('loris::default_vhost', Boolean, 'first'),
+  String $default_vhost = lookup('loris::default_vhost', string, 'first'),
   String $image_dir     = lookup('loris::image_dir', String, 'first'),
   String $user          = lookup('loris::user', String, 'first'),
   String $user_home     = lookup('loris::user_home', String, 'first'),
   #$vhost_value   = lookup('loris::params::vhost_value', String, 'first'),
 ){
   
-  if $default_vhost == true {
+  if $default_vhost == 'true' {
     $vhost_value = '10'
   }
-  elsif $default_vhost == false {
+  elsif $default_vhost == 'false' {
     $vhost_value = '25'
   } 
   apache::vhost { 'loris-default':
