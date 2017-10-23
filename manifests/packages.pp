@@ -8,7 +8,7 @@ class loris::packages {
       case $::operatingsystemmajrelease {
         #/^7*/: {
         '7' : {
-          require loris::dependencies::redhat7
+          require loris::packages::redhat7
         }
         default : { notice("${::operatingsystemmajrelease} is not supported at this time.") }
       }
