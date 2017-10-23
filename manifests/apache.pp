@@ -63,7 +63,6 @@ class loris::apache(
     user                   => 'apache',
     apache_name            => 'httpd',
   }
-
   class { apache::mod::prefork : 
     startservers           => '8',
     minspareservers        => '5',
@@ -72,10 +71,6 @@ class loris::apache(
     maxrequestworkers      => '400',
     maxconnectionsperchild => '4000',
   }
-
-  
-  }
-
   include apache::dev
   include apache::mod::deflate
   include apache::mod::info
