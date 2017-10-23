@@ -21,9 +21,7 @@
 #
 # Copyright 2017 Your name here, unless otherwise noted.
 #
-class loris(
-  String $default_vhost = lookup('loris::default_vhost', String, 'first'),
-){
+class loris {
   include loris::packages
   include loris::install
   include loris::apache

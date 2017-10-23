@@ -1,7 +1,6 @@
 # == Class: loris
 #
 class loris::install::redhat7(
-  String $default_vhost = lookup('loris::default_vhost', String, 'first'),
   String $image_dir     = lookup( 'loris::image_dir', String, 'first' ),
   String $user          = lookup('loris::user', String, 'first'),
   String $user_home     = lookup('loris::user_home', String, 'first'),
