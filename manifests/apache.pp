@@ -64,7 +64,17 @@ class loris::apache(
     apache_name            => 'httpd',
   }
 
-  class { apache::mod::event : }
+  class { apache::mod::prefork : 
+    startservers           => '8'
+    minspareservers        => '5',
+    maxspareservers        => '20',
+    serverlimit            => '400',
+    maxrequestworkers      => '400',
+    maxconnectionsperchild => '4000',
+  }
+
+  
+  }
 
   include apache::dev
   include apache::mod::deflate
