@@ -23,6 +23,7 @@
 #
 class loris::demo(
   String $image_dir = lookup('loris::image_dir', String, 'first'),
+  String $user      = lookup('loris::user', String, 'first'),
 ){
     file { "${image_dir}/001.jp2" :
       ensure  => file,
