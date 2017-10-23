@@ -65,7 +65,7 @@ class loris::apache(
   }
 
   class { apache::mod::prefork : 
-    startservers           => '8'
+    startservers           => '8',
     minspareservers        => '5',
     maxspareservers        => '20',
     serverlimit            => '400',
