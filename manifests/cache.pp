@@ -22,6 +22,7 @@
 # Copyright 2017 Your name here, unless otherwise noted.
 #
 class loris::cache(
+  String $user      = lookup('loris::user', String, 'first'),
   String $user_home = lookup('loris::user_home', String, 'first'),
 ){
     file { '/var/log/loris2' :
