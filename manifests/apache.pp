@@ -16,7 +16,7 @@
 class loris::apache(
   #$image_dir = heira('loris::image_dir', $loris::params::image_dir), 
   #$user      = heira('loris::user', $loris::params::user), 
-  String $default_vhost  = lookup('loris::default_vhost', String, 'first'),
+  String $default_vhost  = lookup('loris::default_vhost', Boolean, 'first'),
   String $image_dir      = lookup('loris::image_dir', String, 'first'),
   String $loris_revision = lookup('loris::loris_revision', String, 'first'),
   String $server_admin   = lookup('loris::server_admin', String, 'first'),
