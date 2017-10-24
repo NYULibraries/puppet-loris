@@ -75,7 +75,7 @@ class loris::apache(
     maxspareservers        => $maxspareservers,
     serverlimit            => $serverlimit,
     maxclients             => $maxclients,
-    maxrequestsperchild    => $maxrequestsperchild',
+    maxrequestsperchild    => $maxrequestsperchild,
   }
   include apache::dev
   include apache::mod::deflate
