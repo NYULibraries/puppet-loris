@@ -22,6 +22,12 @@ class loris::apache(
   String $server_name    = lookup('loris::server_name', String, 'first'),
   String $user           = lookup('loris::user', String, 'first'),
   String $user_home      = lookup('loris::user_home', String, 'first'),
+  Integer $startservers  = lookup('loris::startservers', Integer, 'first'),
+  Integer $minspareservers = lookup('loris::minspareservers', Integer, 'first'),
+  Integer $maxspareservers = lookup('loris::maxspareservers', Integer, 'first'),
+  Integer $serverlimit     = lookup('loris::serverlimit', Integer, 'first'),
+  Integer $maxclients      = lookup('loris::maxclients', Integer, 'first'),
+  Integer $maxrequestsperchild = lookup('loris::maxrequestsperchild', Integer, 'first'),
 ){
   # Drop mod_expires for the default_mods array
   #$default_mods = [ 'actions', 'authn_core', 'cache', 'ext_filter',
@@ -64,12 +70,12 @@ class loris::apache(
     apache_name            => 'httpd',
   }
   class { apache::mod::prefork : 
-    startservers           => '8',
-    minspareservers        => '5',
-    maxspareservers        => '20',
-    serverlimit            => '400',
-    maxclients             => '400',
-    maxrequestsperchild    => '4000',
+    startservers           => $startservers,
+    minspareservers        => $minspareservers,
+    maxspareservers        => $maxspareservers,
+    serverlimit            => $serverlimit,
+    maxclients             => $maxclients,
+    maxrequestsperchild    => $maxrequestsperchild',
   }
   include apache::dev
   include apache::mod::deflate

@@ -7,3 +7,9 @@ loris::server_admin: "root@${server_name}"
 loris::user: 'loris'
 #loris::user_home: "/var/www/${user}2"
 loris::user_home: "/var/www/loris2"
+loris::startservers: '8'
+loris::minspareservers: '5'
+loris::maxspareservers: '20'
+loris::serverlimit: '400'
+loris::maxclients: '400'
+loris::maxrequestsperchild: '4000'
