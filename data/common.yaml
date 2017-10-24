@@ -10,6 +10,6 @@ loris::user_home: "/var/www/loris2"
 loris::startservers: 8
 loris::minspareservers: 5
 loris::maxspareservers: 20
-loris::serverlimit: 400
-loris::maxclients: 400
+loris::serverlimit: 200
+loris::maxclients: 200
 loris::maxrequestsperchild: 4000
