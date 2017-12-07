@@ -2,6 +2,7 @@
 #
 class loris::install::redhat7(
   String $image_dir     = lookup( 'loris::image_dir', String, 'first' ),
+  String $image_group     = lookup( 'loris::image_group', String, 'first' ),
   String $user          = lookup('loris::user', String, 'first'),
   String $user_home     = lookup('loris::user_home', String, 'first'),
 ){
@@ -20,12 +21,12 @@ class loris::install::redhat7(
     ensure => directory,
     owner  => $user,
     group  => $user,
-    mode   => '0755',
+    mode   => '0775',
   }
   file { $image_dir:
     ensure => directory,
     owner  => $user,
-    group  => $user,
+    group  => $image_group,
     mode   => '0755',
   }
   class { 'python':
